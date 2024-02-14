@@ -1,10 +1,21 @@
+<script setup>
+import {ref} from "vue"
+
+const showModal =  ref(false)
+</script>
 <template>
   <main>
-    <div class="overlay"></div>
+    <div v-if="showModal" class="overlay">
+      <div class="modal">
+        <textarea name="note" id="note" cols="30" rows="10"></textarea>
+        <button>Add note</button>
+        <button @click="showModal = false" class="close">Close</button>
+      </div>
+    </div>
     <div class="container">
       <header>
         <h1>Notes</h1>
-        <button>+</button>
+        <button @click="showModal = true">+</button>
       </header>
       <div class="cards-container">
         <div class="card">
@@ -41,7 +52,7 @@
     font-size: 75px;
   }
 
-  button {
+  header button {
     border: none;
     padding: 10px;
     width: 45px;
@@ -70,12 +81,10 @@
     font-size: 12.5px;
     font-weight: bold;
   }
-
   .cards-container{
     display: flex;
     flex-wrap: wrap;
   }
-
   .overlay{
     position: absolute;
     width: 100%;
@@ -85,5 +94,29 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  .modal {
+    width: 750px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+  }
+  .modal button {
+    padding: 10px 20px;
+    font-size: 20px;
+    width: 100%;
+    background-color: chocolate;
+    border: none;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+
+  .modal .close {
+    background-color: rgb(193,15,14);
   }
 </style>
